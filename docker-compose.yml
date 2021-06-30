@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  gradebook:
+    build:
+      context: .
+      dockerfile: ./gradebook/Dockerfile
+    container_name: gradebook
+    volumes:
+      - ./gradebook:/app/gradebook
+    env_file:
+      - .envs/.django.env
+    ports:
+      - 8000:8000
+    working_dir: /app/gradebook
