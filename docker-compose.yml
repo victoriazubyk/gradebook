@@ -1,5 +1,8 @@
 version: "3.8"
 
+volumes:
+  gradebook_db:
+
 services:
   gradebook:
     build:
@@ -14,3 +17,14 @@ services:
     ports:
       - 8000:8000
     working_dir: /app/gradebook
+
+  postgres:
+    build:
+      context: ./postgresql
+      dockerfile: ./Dockerfile
+    ports:
+      - 5432:5432
+    volumes:
+      - gradebook_db:/var/lib/postgresql/data
+    env_file:
+      - .envs/.postgres.env
