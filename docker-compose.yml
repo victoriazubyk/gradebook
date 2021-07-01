@@ -8,6 +8,7 @@ services:
     container_name: gradebook
     volumes:
       - ./gradebook:/app/gradebook
+      - ./.git:/app/.git
     env_file:
       - .envs/.django.env
     ports:
