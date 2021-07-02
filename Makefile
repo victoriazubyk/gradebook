@@ -33,3 +33,15 @@ init: _init collect_static
 .PHONY: up
 up:
 	@$(DC) up -d
+
+.PHONY: stop
+stop:
+	@$(DC) stop
+
+.PHONY: restart
+restart:
+	@$(DC) restart
+
+.PHONY: cmd
+cmd:
+	@$(DC) exec gradebook bash
