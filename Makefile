@@ -25,4 +25,4 @@ init: gen_ssl_certs gen_secret_keys
 
 .PHONY: up
 up:
-	$(DC) -d up
+	@$(DC) up -d
