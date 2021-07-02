@@ -21,6 +21,7 @@ gen_secret_keys:
 
 .PHONY: init
 init: gen_ssl_certs gen_secret_keys
+	$(DC) build
 
 .PHONY: up
 up:
