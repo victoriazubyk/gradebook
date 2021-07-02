@@ -251,3 +251,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 certificates
+.envs/.secretkey.*
