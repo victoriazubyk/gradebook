@@ -19,9 +19,16 @@ gen_secret_keys:
 	@python -c "import secrets; print('SECRET_KEY=', secrets.token_hex(100), sep='')" > $(SECRET_KEY_FILE)
 	@echo "Generated Django secret key."
 
-.PHONY: init
-init: gen_ssl_certs gen_secret_keys
+.PHONY: collect_static
+collect_static: up
+	$(DC) exec gradebook python manage.py collectstatic
+
+.PHONY: _init
+_init: gen_ssl_certs gen_secret_keys
 	$(DC) build
+
+.PHONY: init
+init: _init collect_static
 
 .PHONY: up
 up:

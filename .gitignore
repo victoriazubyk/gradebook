@@ -252,3 +252,4 @@ fabric.properties
 
 certificates
 .envs/.secretkey.*
+staticfiles
