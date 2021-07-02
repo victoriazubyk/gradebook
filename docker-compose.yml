@@ -17,11 +17,14 @@ services:
     ports:
       - 8000:8000
     working_dir: /app/gradebook
+    depends_on:
+      - postgres
 
   postgres:
     build:
       context: ./postgresql
       dockerfile: ./Dockerfile
+    container_name: postgres
     ports:
       - 5432:5432
     volumes:
