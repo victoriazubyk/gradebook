@@ -1,0 +1,34 @@
+version: "3.8"
+
+volumes:
+  gradebook_db:
+
+services:
+  gradebook:
+    build:
+      context: .
+      dockerfile: ./gradebook/Dockerfile
+    container_name: gradebook
+    volumes:
+      - ./gradebook:/app/gradebook
+      - ./.git:/app/.git
+    env_file:
+      - .envs/.django.env
+      - .envs/.secretkey.django.env
+    ports:
+      - 8000:8000
+    working_dir: /app/gradebook
+    depends_on:
+      - postgres
+
+  postgres:
+    build:
+      context: ./postgresql
+      dockerfile: ./Dockerfile
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - gradebook_db:/var/lib/postgresql/data
+    env_file:
+      - .envs/.postgres.env
